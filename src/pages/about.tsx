@@ -1,21 +1,27 @@
-import { Meta } from '@/layout/Meta';
-import { Main } from '@/templates/Main';
+import { useState } from 'react';
 
-const About = () => (
-  <Main meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione fuga
-      recusandae quidem. Quaerat molestiae blanditiis doloremque possimus labore
-      voluptatibus distinctio recusandae autem esse explicabo molestias officia
-      placeat, accusamus aut saepe.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione fuga
-      recusandae quidem. Quaerat molestiae blanditiis doloremque possimus labore
-      voluptatibus distinctio recusandae autem esse explicabo molestias officia
-      placeat, accusamus aut saepe.
-    </p>
-  </Main>
-);
+import TestComponent from 'src/components/TestComponent';
+
+// const Test = dynamic(() => import('src/components/TestComponent'));
+
+const About = ({ display }) => {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setShow(true)}>click</button>
+      yoyoyo
+      {display && <TestComponent />}
+    </div>
+  );
+};
+
+export async function getStaticProps(context: any) {
+  return {
+    props: {
+      display: false,
+    },
+  };
+}
 
 export default About;
