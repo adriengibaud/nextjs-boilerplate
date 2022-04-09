@@ -1,22 +1,22 @@
 import { useState } from 'react';
 
-import TestComponent from 'src/components/TestComponent';
+import dynamic from 'next/dynamic';
 
-// const Test = dynamic(() => import('src/components/TestComponent'));
+const Test = dynamic(() => import('src/components/TestComponent'));
 
-const About = ({ display }) => {
+const About = () => {
   const [show, setShow] = useState(false);
 
   return (
     <div>
-      <button onClick={() => setShow(true)}>click</button>
+      <button onClick={() => setShow(!show)}>click</button>
       yoyoyo
-      {display && <TestComponent />}
+      {show && <Test />}
     </div>
   );
 };
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps() {
   return {
     props: {
       display: false,
